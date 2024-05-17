@@ -17,3 +17,4 @@ slackeventsapi==3.0.1
 typing_extensions==4.11.0
 Werkzeug==3.0.3
 yarl==1.9.4
+openai==1.30.1
