@@ -16,9 +16,9 @@ client = slack.WebClient(token=os.environ['SLACK_BOT_USER_TOKEN'])
 BOT_ID = client.api_call("auth.test")['user_id']
 
 azure_openai_client = AzureOpenAI(
-    api_version="2023-07-01-preview",
-    api_key=os.environ['AZURE_OPENAI_API_KEY'],
-    azure_endpoint="https://rel24-hackathon-esus.openai.azure.com/",
+    api_version=os.environ['OPENAI_API_VERSION'],
+    api_key=os.environ['OPENAI_API_KEY'],
+    azure_endpoint=os.environ['AZURE_OPENAI_ENDPOINT'],
 )
 
 responded_threads = set()
@@ -45,6 +45,7 @@ def message(payload):
   thread_ts = event.get('thread_ts') or event.get('ts')
 
   if user_id != BOT_ID and thread_ts not in responded_threads :
+
     response_text = get_chatgpt_response(text)
     client.chat_postMessage(
         channel=channel_id,
