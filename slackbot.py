@@ -83,7 +83,7 @@ def get_chatgpt_response(prompt):
         {
             "role": "system",
             "content": (
-                "If you can't fine the answer in the system context, you should reply 'I could not find an answer'."
+                "If you can't find the answer in the system context, you should reply 'I could not find an answer'."
             )
         }
     ]
