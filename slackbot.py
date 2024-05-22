@@ -24,15 +24,13 @@ azure_openai_client = AzureOpenAI(
 responded_threads = set()
 
 def get_chatgpt_response(prompt):
+    messages = [{"role": "system", "content": "Providing Relativity hackathon presentation date is may 23, 2024"}]
+    messages.append({"role": "user", "content": prompt})
     completion = azure_openai_client.chat.completions.create(
-        model="gpt-4-turbo-0125-preview",
-        messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            },
-        ],
+        model="gpt-35-turbo-0301",
+        messages=messages
     )
+
     return completion.choices[0].message.content.strip()
 
 @slack_event_adapter.on('message')
